@@ -9,6 +9,6 @@ test1
 ![logo](planar-1.png)
 test1
 ![](planar-1.png)
+![](./planar-reflection/planar-1.png)
 test1
-{% asset_img planar-1.png This is an example image %}
-{% asset_img ./planar-reflection/planar-1.png This is an example image %}
+
