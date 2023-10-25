@@ -106,6 +106,6 @@ theme: miho
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
+  branch: gh-pages
   repo: https://github.com/xubing0906/works-demo.github.io
   # example, https://github.com/hexojs/hexojs.github.io
-  branch: gh-pages
