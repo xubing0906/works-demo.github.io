@@ -1,7 +1,6 @@
 ---
-title: Planar Reflection1
+title: Planar Reflection
 ---
 test
-{% asset_img planar-1.png This is an example image %}
-![](../images/planar-1.png)
-![](../images/planar-2.png)
+<img src="./planar-reflection/planar-1.png">
+<img src="./planar-reflection/planar-2.png">
