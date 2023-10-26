@@ -30,10 +30,10 @@ menu:
     title: Archives
     url: /archives
     target: false
-  user:
-    title: About
-    url: /about
-    target: false
+  # user:
+  #   title: About
+  #   url: /about
+  #   target: false
 # Social setting, use to display social information | 社交设置，用来展示社交信息
 #  name:                  Font Awesome icon | Font Awesome 图标
 #    title: Home          Icon title | 图标标题
@@ -74,7 +74,7 @@ open_animation: true
 # Open toc | 是否开启toc
 toc: true
 # Open share | 是否开启分享
-share: true
+share: false
 
 # Style customization | 样式定制
 style:
@@ -86,9 +86,9 @@ style:
 reward:
   # 0-close, 1-All articles are rewarding, 2-Article's md file has reward:true attribute, only reward
   # 0-关闭, 1-所有文章均有打赏, 2-文章的md文件里有reward:true属性，才有打赏
-  status: 1
+  status: 0
   # 标题
-  title: 请我吃糖~
+  title: 
   # 微信，关闭设为 false
   wechat: images/wechat_code.jpg
   # 支付宝，关闭设为 false
@@ -122,9 +122,9 @@ google_analytics: false
 
 # Access statistics | “不蒜子”访问量统计
 access_counter:
-  on: true
+  on: false
   site_uv: 总访客数：
   site_pv: 总访问量：
 
 # Copyright Information | 版权信息
-copyright: 2018 MinHow
+copyright:
