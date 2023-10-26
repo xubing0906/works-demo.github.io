@@ -2,8 +2,9 @@
 title: Planar Reflection
 ---
 test2
-<img src="../planar-reflection/planar-1.png">
-<img src="./planar-reflection/planar-2.png" alt="miaoshusha">
+<img src="planar-1.png">
+<img src="./planar-reflection/planar2.png">
+<img src="planar-1.png">
 test666633
 ![](planar-1.png)
 test8888899
