@@ -3,7 +3,7 @@ title: Planar Reflection
 ---
 test2
 <img src="planar2.png">
-<img src="planar2.png" alt="miaoshusha">
+<img src="planar-1.png" alt="miaoshusha">
 test666633
 ![](planar-1.png)
 test8888899
