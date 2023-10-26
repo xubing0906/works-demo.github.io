@@ -107,5 +107,5 @@ theme: miho
 deploy:
   type: git
   branch: gh-pages
-  repo: https://github.com/xubing0906/works-demo.github.io
+  repo: https://github.com/xubing0906/works-demo
   # example, https://github.com/hexojs/hexojs.github.io
