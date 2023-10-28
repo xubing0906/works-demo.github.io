@@ -1,6 +1,6 @@
 ---
 title: Ocean
-cover_picture: images/planar.png
+cover_picture: images/ocean.png
 categories: Unity Shader
 tags:
     - Ocean 
