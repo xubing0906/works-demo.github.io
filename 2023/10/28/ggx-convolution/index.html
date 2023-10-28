@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>GGX Convolution | Works</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="xubing's Works" />
+  
+  <meta name="description" content="GPU自动生成mipmaps GGX卷积后的mipmaps 对比，左侧为自动生成的，右侧为GGX卷积后的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GGX Convolution">
+<meta property="og:url" content="https://xubing0906.github.io/works-demo/2023/10/28/ggx-convolution/index.html">
+<meta property="og:site_name" content="Works">
+<meta property="og:description" content="GPU自动生成mipmaps GGX卷积后的mipmaps 对比，左侧为自动生成的，右侧为GGX卷积后的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xubing0906.github.io/works-demo/works-images/mipmaps.png">
+<meta property="og:image" content="https://xubing0906.github.io/works-demo/works-images/ggx-mipmaps.png">
+<meta property="article:published_time" content="2023-10-28T07:37:55.515Z">
+<meta property="article:modified_time" content="2023-10-28T08:17:55.539Z">
+<meta property="article:author" content="xubing">
+<meta property="article:tag" content="convolution">
+<meta property="article:tag" content="cubemap">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xubing0906.github.io/works-demo/works-images/mipmaps.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/works-demo/css/style.css">
+
+  
+<script src="/works-demo/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/works-demo/" class="left">
+                    <span class="site-title">xubing&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/works-demo/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/works-demo/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/works-demo/">
+                    <img src="/works-demo/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        xubing&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        works
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="https://github.com/xubing0906">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="xubingbing0906" target="_blank" ">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-ggx-convolution" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      GGX Convolution
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2023-10-28
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h4 id="GPU自动生成mipmaps"><a href="#GPU自动生成mipmaps" class="headerlink" title="GPU自动生成mipmaps"></a>GPU自动生成mipmaps</h4><p><img src="/works-demo/works-images/mipmaps.png"></p>
+<h4 id="GGX卷积后的mipmaps"><a href="#GGX卷积后的mipmaps" class="headerlink" title="GGX卷积后的mipmaps"></a>GGX卷积后的mipmaps</h4><p><img src="/works-demo/works-images/ggx-mipmaps.png"></p>
+<h4 id="对比，左侧为自动生成的，右侧为GGX卷积后的"><a href="#对比，左侧为自动生成的，右侧为GGX卷积后的" class="headerlink" title="对比，左侧为自动生成的，右侧为GGX卷积后的"></a>对比，左侧为自动生成的，右侧为GGX卷积后的</h4><video src="https://xb-resource.oss-cn-shanghai.aliyuncs.com/convolution.mp4" controls="controls" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;">
+</video>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2023年10月28日 16:17</p>
+        <p>原始链接： <a class="post-url" href="/works-demo/2023/10/28/ggx-convolution/" title="GGX Convolution">https://xubing0906.github.io/works-demo/2023/10/28/ggx-convolution/</a></p>
+        <footer>
+            <a href="https://xubing0906.github.io/works-demo">
+                <img src="/works-demo/images/logo.png" alt="xubing">
+                xubing
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/works-demo/tags/convolution/" class="color2">convolution</a>
+      
+    <a href="/works-demo/tags/cubemap/" class="color3">cubemap</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#GPU%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90mipmaps"><span class="post-toc-text">GPU自动生成mipmaps</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#GGX%E5%8D%B7%E7%A7%AF%E5%90%8E%E7%9A%84mipmaps"><span class="post-toc-text">GGX卷积后的mipmaps</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%AF%B9%E6%AF%94%EF%BC%8C%E5%B7%A6%E4%BE%A7%E4%B8%BA%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E7%9A%84%EF%BC%8C%E5%8F%B3%E4%BE%A7%E4%B8%BAGGX%E5%8D%B7%E7%A7%AF%E5%90%8E%E7%9A%84"><span class="post-toc-text">对比，左侧为自动生成的，右侧为GGX卷积后的</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/works-demo/2023/10/28/3dprint/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          3D Print
+        
+      </span>
+    </a>
+  
+  
+    <a href="/works-demo/2023/10/28/planar-reflection/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Planar Reflection</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2023 xubing<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://xubing0906.github.io/works-demo",
+      animate: true,
+      isHome: false,
+      share: false,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/works-demo/categories/Reflection-Probe/">Reflection Probe</a><a class="category-link" href="/works-demo/categories/Unity-Shader/">Unity Shader</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/works-demo/tags/Blend/" style="font-size: 10px;">Blend</a> <a href="/works-demo/tags/Box-Projection/" style="font-size: 10px;">Box Projection</a> <a href="/works-demo/tags/Ocean/" style="font-size: 10px;">Ocean</a> <a href="/works-demo/tags/Planar-Reflection/" style="font-size: 10px;">Planar Reflection</a> <a href="/works-demo/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/works-demo/tags/convolution/" style="font-size: 10px;">convolution</a> <a href="/works-demo/tags/cubemap/" style="font-size: 10px;">cubemap</a> <a href="/works-demo/tags/post-process/" style="font-size: 10px;">post process</a> <a href="/works-demo/tags/shader/" style="font-size: 15px;">shader</a> <a href="/works-demo/tags/unity/" style="font-size: 20px;">unity</a> <a href="/works-demo/tags/urp/" style="font-size: 10px;">urp</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/works-demo/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/works-demo/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/works-demo/tags/Blend/" style="font-size: 10px;">Blend</a> <a href="/works-demo/tags/Box-Projection/" style="font-size: 10px;">Box Projection</a> <a href="/works-demo/tags/Ocean/" style="font-size: 10px;">Ocean</a> <a href="/works-demo/tags/Planar-Reflection/" style="font-size: 10px;">Planar Reflection</a> <a href="/works-demo/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/works-demo/tags/convolution/" style="font-size: 10px;">convolution</a> <a href="/works-demo/tags/cubemap/" style="font-size: 10px;">cubemap</a> <a href="/works-demo/tags/post-process/" style="font-size: 10px;">post process</a> <a href="/works-demo/tags/shader/" style="font-size: 15px;">shader</a> <a href="/works-demo/tags/unity/" style="font-size: 20px;">unity</a> <a href="/works-demo/tags/urp/" style="font-size: 10px;">urp</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/works-demo/js/search.js"></script>
+
+
+<script src="/works-demo/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/works-demo/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/works-demo/js/animate.js"></script>
+
+
+
+  
+<script src="/works-demo/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

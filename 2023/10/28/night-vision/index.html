@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Night Vision | Works</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="xubing's Works" />
+  
+  <meta name="description" content="项目案例夜视和全息效果主要效果包括：1 部队和野怪替换成全息效果的材质2 部队和野怪增加bloom效果3 夜视效果4 切换的过程中有径向模糊效果实现思路：1 全息材质效果，URP下通过添加RenderFeature进行多pass渲染，可以通过筛选Layer的方式，把部队和野怪所在unitLayer的物体全部通过增加一个全息材质的Pass在渲染一遍。2 Bloom效果，把画面中亮度较强的像素提取出来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Night Vision">
+<meta property="og:url" content="https://xubing0906.github.io/works-demo/2023/10/28/night-vision/index.html">
+<meta property="og:site_name" content="Works">
+<meta property="og:description" content="项目案例夜视和全息效果主要效果包括：1 部队和野怪替换成全息效果的材质2 部队和野怪增加bloom效果3 夜视效果4 切换的过程中有径向模糊效果实现思路：1 全息材质效果，URP下通过添加RenderFeature进行多pass渲染，可以通过筛选Layer的方式，把部队和野怪所在unitLayer的物体全部通过增加一个全息材质的Pass在渲染一遍。2 Bloom效果，把画面中亮度较强的像素提取出来">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xubing0906.github.io/works-demo/works-images/night-vision1.jpg">
+<meta property="og:image" content="https://xubing0906.github.io/works-demo/works-images/night-vision2.jpg">
+<meta property="article:published_time" content="2023-10-28T08:00:53.125Z">
+<meta property="article:modified_time" content="2023-10-28T08:18:05.517Z">
+<meta property="article:author" content="xubing">
+<meta property="article:tag" content="unity">
+<meta property="article:tag" content="urp">
+<meta property="article:tag" content="post process">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xubing0906.github.io/works-demo/works-images/night-vision1.jpg">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/works-demo/css/style.css">
+
+  
+<script src="/works-demo/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/works-demo/" class="left">
+                    <span class="site-title">xubing&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/works-demo/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/works-demo/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/works-demo/">
+                    <img src="/works-demo/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        xubing&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        works
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="https://github.com/xubing0906">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="xubingbing0906" target="_blank" ">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-night-vision" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Night Vision
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2023-10-28
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h4 id="项目案例"><a href="#项目案例" class="headerlink" title="项目案例"></a>项目案例</h4><p><img src="/works-demo/works-images/night-vision1.jpg"><br><img src="/works-demo/works-images/night-vision2.jpg"><br>夜视和全息效果<br>主要效果包括：<br>1 部队和野怪替换成全息效果的材质<br>2 部队和野怪增加bloom效果<br>3 夜视效果<br>4 切换的过程中有径向模糊效果<br>实现思路：<br>1 全息材质效果，URP下通过添加RenderFeature进行多pass渲染，可以通过筛选Layer的方式，把部队和野怪所在unitLayer的物体全部通过增加一个全息材质的Pass在渲染一遍。<br>2 Bloom效果，把画面中亮度较强的像素提取出来进行模糊操作，在叠加到原纹理上。<br>3 夜视效果，通过在Shader中调整像素的亮度、饱和度、对比度来实现，但是需要把部队和野怪排除掉，通过添加RenderFeature把unityLayer的物体渲染到一张Mask纹理中，然后在做夜视效果的Shader中采样Mask贴图来决定是否添加夜视效果。<br>4 径向模糊效果，切换夜视效果的时候过渡的过程中添加径向模糊效果，首先定义一个中心点，从中心指向该像素点的方向就是径向模糊的方向，然后取当前像素点，以及沿着径向模糊方向再取几个点作为采样点，采样点越靠近中心越密集，越远离中心越稀疏，最后，该像素点的输出就是这些采样点的均值。这样，在靠近中心点的位置，采样距离小，几乎为0，也就不会模糊；而越靠近边界的位置，采样的距离越大，图像也就会越模糊。</p>
+<h4 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h4><video src="https://xb-resource.oss-cn-shanghai.aliyuncs.com/dark.mp4" controls="controls" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;">
+</video>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2023年10月28日 16:18</p>
+        <p>原始链接： <a class="post-url" href="/works-demo/2023/10/28/night-vision/" title="Night Vision">https://xubing0906.github.io/works-demo/2023/10/28/night-vision/</a></p>
+        <footer>
+            <a href="https://xubing0906.github.io/works-demo">
+                <img src="/works-demo/images/logo.png" alt="xubing">
+                xubing
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/works-demo/tags/unity/" class="color1">unity</a>
+      
+    <a href="/works-demo/tags/urp/" class="color4">urp</a>
+      
+    <a href="/works-demo/tags/postprocess/" class="color3">post process</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%A1%88%E4%BE%8B"><span class="post-toc-text">项目案例</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Video"><span class="post-toc-text">Video</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/works-demo/2023/10/28/ui-glitch%20/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">UI Glitch</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2023 xubing<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://xubing0906.github.io/works-demo",
+      animate: true,
+      isHome: false,
+      share: false,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/works-demo/categories/Reflection-Probe/">Reflection Probe</a><a class="category-link" href="/works-demo/categories/Unity-Shader/">Unity Shader</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/works-demo/tags/Blend/" style="font-size: 10px;">Blend</a> <a href="/works-demo/tags/Box-Projection/" style="font-size: 10px;">Box Projection</a> <a href="/works-demo/tags/Ocean/" style="font-size: 10px;">Ocean</a> <a href="/works-demo/tags/Planar-Reflection/" style="font-size: 10px;">Planar Reflection</a> <a href="/works-demo/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/works-demo/tags/convolution/" style="font-size: 10px;">convolution</a> <a href="/works-demo/tags/cubemap/" style="font-size: 10px;">cubemap</a> <a href="/works-demo/tags/post-process/" style="font-size: 10px;">post process</a> <a href="/works-demo/tags/shader/" style="font-size: 15px;">shader</a> <a href="/works-demo/tags/unity/" style="font-size: 20px;">unity</a> <a href="/works-demo/tags/urp/" style="font-size: 10px;">urp</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/works-demo/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/works-demo/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/works-demo/tags/Blend/" style="font-size: 10px;">Blend</a> <a href="/works-demo/tags/Box-Projection/" style="font-size: 10px;">Box Projection</a> <a href="/works-demo/tags/Ocean/" style="font-size: 10px;">Ocean</a> <a href="/works-demo/tags/Planar-Reflection/" style="font-size: 10px;">Planar Reflection</a> <a href="/works-demo/tags/Shader/" style="font-size: 10px;">Shader</a> <a href="/works-demo/tags/convolution/" style="font-size: 10px;">convolution</a> <a href="/works-demo/tags/cubemap/" style="font-size: 10px;">cubemap</a> <a href="/works-demo/tags/post-process/" style="font-size: 10px;">post process</a> <a href="/works-demo/tags/shader/" style="font-size: 15px;">shader</a> <a href="/works-demo/tags/unity/" style="font-size: 20px;">unity</a> <a href="/works-demo/tags/urp/" style="font-size: 10px;">urp</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/works-demo/js/search.js"></script>
+
+
+<script src="/works-demo/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/works-demo/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/works-demo/js/animate.js"></script>
+
+
+
+  
+<script src="/works-demo/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
