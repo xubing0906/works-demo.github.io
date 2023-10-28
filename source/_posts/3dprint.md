@@ -1,6 +1,7 @@
 ---
 title: 3D Print
 cover_picture: images/effect.png
+categories: Unity Shader
 tags:
     - unity
     - shader

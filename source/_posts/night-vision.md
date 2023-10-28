@@ -1,6 +1,7 @@
 ---
 title: Night Vision
 cover_picture: images/night-vision1.jpg
+categories: Unity Shader
 tags:
     - unity
     - urp

@@ -1,6 +1,7 @@
 ---
 title: UI Glitch
 cover_picture: images/ui-2.png
+categories: Unity Shader
 tags:
     - unity
     - shader

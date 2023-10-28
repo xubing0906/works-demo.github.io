@@ -1,6 +1,7 @@
 ---
 title: Reflection Probe
 cover_picture: images/reflection-probe.png
+categories: Cocos
 tags:
     - blend
     - box projection
