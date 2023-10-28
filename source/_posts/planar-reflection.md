@@ -27,6 +27,13 @@ private _reflect (out: Vec3, point: Vec3, normal: Vec3, offset: number): Vec3
     &emsp;&emsp;return out;
 }
 ![](/works-images/planar-1.png)
+上图有一个问题，就是地面虽然使用了法线贴图，但是平面反射的效果却没受法线贴图凹凸的影响，看起来就像镜面反射一样特别光滑。
+采样平面反射贴图的uv坐标是顶点worldpos经过投影矩阵变换后除以w分量后的ndc坐标，在乘以0.5 + 0.5映射到0-1之间，要想让法线贴图影响uv坐标，需要在投影矩阵变换之前对worldpos进行偏移，过程如下：
+![](/works-images/worldpos.png)
+以平面上的点w来举例：渲染反射贴图时相机的方向是和反射方向一致的，对于光滑的平面w必然经过相机的方向。
+但是应用反射贴图后，反射向量会指向不同的方向，相机指向新的反射方向时会和平面产生一个新的交点，只需计算出交点的坐标，然后把此坐标转到裁剪空间进行透视除法后映射到屏幕坐标，然后进行采样就应该能得到想要的效果。
+w'就是新的worldpos，所以问题变成求w'的坐标。
+
 #### 偏移world pos后的效果
 ![](/works-images/planar-2.png)
 
