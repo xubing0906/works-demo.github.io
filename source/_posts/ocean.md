@@ -3,8 +3,8 @@ title: Ocean
 cover_picture: images/ocean.png
 categories: Unity Shader
 tags:
-    - Ocean 
-    - Shader
+    - ocean 
+    - shader
 ---
 #### 海水效果
 

@@ -3,7 +3,7 @@ title: Planar Reflection
 cover_picture: images/planar.png
 categories: Reflection Probe
 tags:
-    - Planar Reflection
+    - planar reflection
 ---
 #### 平面反射效果
 ![](/works-images/planar-2.png)

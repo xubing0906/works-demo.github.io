@@ -7,9 +7,9 @@ favicon: /favicon.ico
 # Header
 
 # Keywords of your site | 网站关键字
-keywords: xubing's Works
+keywords: xubing's works
 # Head headline | 头部标题
-header_title: xubing's Blog
+header_title: xubing's blog
 # Head description | 头部描述
 header_description: works
 # Link to your logo | logo地址
@@ -90,9 +90,9 @@ reward:
   # 标题
   title: 
   # 微信，关闭设为 false
-  wechat: images/wechat_code.jpg
+  wechat:
   # 支付宝，关闭设为 false
-  alipay: images/alipay_code.jpg
+  alipay:
 
 # Comments | 评论
 
