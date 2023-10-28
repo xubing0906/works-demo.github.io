@@ -112,6 +112,13 @@
   
 
           
+              <span class="header-cate">
+                <i class="fa fa-map-marker"></i>
+                  
+                  <a href="/works-demo/categories/UnityShader/">Unity Shader</a>
+                  
+              </span>
+          
       </header>
     
     <div class="article-entry " itemprop="articleBody">
@@ -170,6 +177,13 @@
     </h1>
   
 
+          
+              <span class="header-cate">
+                <i class="fa fa-map-marker"></i>
+                  
+                  <a href="/works-demo/categories/UnityShader/">Unity Shader</a>
+                  
+              </span>
           
       </header>
     
@@ -233,6 +247,13 @@ Video
   
 
           
+              <span class="header-cate">
+                <i class="fa fa-map-marker"></i>
+                  
+                  <a href="/works-demo/categories/UnityShader/">Unity Shader</a>
+                  
+              </span>
+          
       </header>
     
     <div class="article-entry " itemprop="articleBody">
@@ -290,6 +311,13 @@ Video
   
 
           
+              <span class="header-cate">
+                <i class="fa fa-map-marker"></i>
+                  
+                  <a href="/works-demo/categories/Cocos/">Cocos</a>
+                  
+              </span>
+          
       </header>
     
     <div class="article-entry " itemprop="articleBody">
@@ -303,11 +331,9 @@ Video
         </div>
         <div class="article-feed">
             <p>
-                GPU自动生成mipmaps
-GGX卷积后的mipmaps
-对比，左侧为自动生成的，右侧为GGX卷积后的
-
-
+                CubeMap卷积由于光源使用的是 GGX BRDF 模型，IBL必须使用同样的BRDF模型，光照效果才能对的上。利用cmft库烘焙每个层级的mipmap，替换自动生成的mipmap，shader中根据粗糙度去匹配mip，卷积计算可以修复以下问题：•	因为能量不守恒导致高光的泛光区和拖尾被削弱•	自动生成的mip和材质粗糙度对不上
+GPU自动生成mipmaps
+GGX卷积...
             </p>
         </div>
       
@@ -354,7 +380,7 @@ GGX卷积后的mipmaps
               <span class="header-cate">
                 <i class="fa fa-map-marker"></i>
                   
-                  <a href="/works-demo/categories/ReflectionProbe/">Reflection Probe</a>
+                  <a href="/works-demo/categories/Cocos/">Cocos</a>
                   
               </span>
           
@@ -371,9 +397,7 @@ GGX卷积后的mipmaps
         </div>
         <div class="article-feed">
             <p>
-                平面反射效果
-偏移world pos后的效果
-
+                平面反射效果原理：把摄像机放到关于平面对称的位置，然后看向平面的反射方向，把场景渲染至RT，shader中通过屏幕uv采样rt即可得到反射效果。只需解决两个问题1 摄像机关于平面对称的位置2 摄像机方向平面方程的点法表达形式通常为 N·P + d &#x3D; 0假设平面位于原点处，P为相机的位置，N为平面法线根据平面方程可得到相机到平面的距离d。p沿着-N方向移动2d就...
             </p>
         </div>
       
@@ -435,12 +459,9 @@ GGX卷积后的mipmaps
         </div>
         <div class="article-feed">
             <p>
-                海水效果
-your browser does not support the video tag
-
-
-
-
+                海水效果主要效果：
+1 使用_Time函数让法线偏移使水面动起来，这里深水和浅水使用了不同的法线贴图。
+2 浅水和深水做颜色过度，原理就是观察空间下比较水面和地面的线性深度，地面的深度可以通过深度纹理获取，水面深度是NDC空间下的Z值，ComputeScreenPos函数返回齐次裁剪空间下的屏幕坐标，除以W分量获取NDC坐标，Z值就是水面深度值，使用XY坐标采样深度纹理获...
             </p>
         </div>
       
@@ -483,6 +504,13 @@ your browser does not support the video tag
     </h1>
   
 
+          
+              <span class="header-cate">
+                <i class="fa fa-map-marker"></i>
+                  
+                  <a href="/works-demo/categories/Cocos/">Cocos</a>
+                  
+              </span>
           
       </header>
     
@@ -579,7 +607,7 @@ Blend ReflectionProbe
 <div class="sidebar-menu-box" id="sidebar-menu-box">
     <div class="sidebar-menu-box-container">
         <div id="sidebar-menu-box-categories">
-            <a class="category-link" href="/works-demo/categories/Reflection-Probe/">Reflection Probe</a><a class="category-link" href="/works-demo/categories/Unity-Shader/">Unity Shader</a>
+            <a class="category-link" href="/works-demo/categories/Cocos/">Cocos</a><a class="category-link" href="/works-demo/categories/Unity-Shader/">Unity Shader</a>
         </div>
         <div id="sidebar-menu-box-tags">
             <a href="/works-demo/tags/blend/" style="font-size: 10px;">blend</a> <a href="/works-demo/tags/box-projection/" style="font-size: 10px;">box projection</a> <a href="/works-demo/tags/convolution/" style="font-size: 10px;">convolution</a> <a href="/works-demo/tags/cubemap/" style="font-size: 10px;">cubemap</a> <a href="/works-demo/tags/glitch/" style="font-size: 10px;">glitch</a> <a href="/works-demo/tags/ocean/" style="font-size: 10px;">ocean</a> <a href="/works-demo/tags/planar-reflection/" style="font-size: 10px;">planar reflection</a> <a href="/works-demo/tags/post-process/" style="font-size: 10px;">post process</a> <a href="/works-demo/tags/shader/" style="font-size: 20px;">shader</a> <a href="/works-demo/tags/unity/" style="font-size: 20px;">unity</a> <a href="/works-demo/tags/urp/" style="font-size: 10px;">urp</a>
