@@ -32,8 +32,14 @@ private _reflect (out: Vec3, point: Vec3, normal: Vec3, offset: number): Vec3
 ![](/works-images/worldpos.png)
 以平面上的点w来举例：渲染反射贴图时相机的方向是和反射方向一致的，对于光滑的平面w必然经过相机的方向。
 但是应用反射贴图后，反射向量会指向不同的方向，相机指向新的反射方向时会和平面产生一个新的交点，只需计算出交点的坐标，然后把此坐标转到裁剪空间进行透视除法后映射到屏幕坐标，然后进行采样就应该能得到想要的效果。
-w'就是新的worldpos，所以问题变成求w'的坐标。
+w'就是新的worldpos，所以问题变成求w'的坐标，计算w'的位置关键在与计算T的距离
 
+W' = C' + R' * T
+w'· N + d = 0
+(C' + R' * T) · N + d = 0
+C'· N + R' * T · N = abs(d)
+T = (abs(d) - C' · N ) / R'· N
+W' = C' + T * R'
 #### 偏移world pos后的效果
 ![](/works-images/planar-2.png)
 
