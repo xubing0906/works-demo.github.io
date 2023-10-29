@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://xubing0906.github.io/works-demo/works-images/worldpos.png">
 <meta property="og:image" content="https://xubing0906.github.io/works-demo/works-images/planar-2.png">
 <meta property="article:published_time" content="2023-10-28T06:31:29.972Z">
-<meta property="article:modified_time" content="2023-10-28T15:10:47.038Z">
+<meta property="article:modified_time" content="2023-10-29T03:23:19.148Z">
 <meta property="article:author" content="xubing">
 <meta property="article:tag" content="planar reflection">
 <meta name="twitter:card" content="summary">
@@ -143,12 +143,13 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h4 id="平面反射效果"><a href="#平面反射效果" class="headerlink" title="平面反射效果"></a>平面反射效果</h4><p>原理：把摄像机放到关于平面对称的位置，然后看向平面的反射方向，把场景渲染至RT，shader中通过屏幕uv采样rt即可得到反射效果。<br>只需解决两个问题<br>1 摄像机关于平面对称的位置<br>2 摄像机方向<br>平面方程的点法表达形式通常为 N·P + d &#x3D; 0<br>假设平面位于原点处，P为相机的位置，N为平面法线<br>根据平面方程可得到相机到平面的距离d。<br>p沿着-N方向移动2d就是反射相机的位置<br>所以p’ &#x3D; P + 2 * d * (-N)或者p’ &#x3D; P - 2 * d * N，如果平面不在原点处，还需计算平面到原点的距离dist<br>p’ &#x3D; P - 2 * (d - dist) * N，<br>对于向量同样适用此计算方式，只是无需dist<br>写成函数:<br>private _reflect (out: Vec3, point: Vec3, normal: Vec3, offset: number): Vec3<br>{<br>    &emsp;&emsp;const n &#x3D; Vec3.clone(normal);<br>    &emsp;&emsp;const dist &#x3D; Vec3.dot(n, point) - offset;<br>    &emsp;&emsp;n.multiplyScalar(2.0 * dist);<br>    &emsp;&emsp;Vec3.subtract(out, point, n);<br>    &emsp;&emsp;return out;<br>}<br><img src="/works-demo/works-images/planar-1.png"><br>上图有一个问题，就是地面虽然使用了法线贴图，但是平面反射的效果却没受法线贴图凹凸的影响，看起来就像镜面反射一样特别光滑。<br>采样平面反射贴图的uv坐标是顶点worldpos经过投影矩阵变换后除以w分量后的ndc坐标，在乘以0.5 + 0.5映射到0-1之间，要想让法线贴图影响uv坐标，需要在投影矩阵变换之前对worldpos进行偏移，过程如下：<br><img src="/works-demo/works-images/worldpos.png"><br>以平面上的点w来举例：渲染反射贴图时相机的方向是和反射方向一致的，对于光滑的平面w必然经过相机的方向。<br>但是应用反射贴图后，反射向量会指向不同的方向，相机指向新的反射方向时会和平面产生一个新的交点，只需计算出交点的坐标，然后把此坐标转到裁剪空间进行透视除法后映射到屏幕坐标，然后进行采样就应该能得到想要的效果。<br>w’就是新的worldpos，所以问题变成求w’的坐标。</p>
+            <h4 id="平面反射效果"><a href="#平面反射效果" class="headerlink" title="平面反射效果"></a>平面反射效果</h4><p>原理：把摄像机放到关于平面对称的位置，然后看向平面的反射方向，把场景渲染至RT，shader中通过屏幕uv采样rt即可得到反射效果。<br>只需解决两个问题<br>1 摄像机关于平面对称的位置<br>2 摄像机方向<br>平面方程的点法表达形式通常为 N·P + d &#x3D; 0<br>假设平面位于原点处，P为相机的位置，N为平面法线<br>根据平面方程可得到相机到平面的距离d。<br>p沿着-N方向移动2d就是反射相机的位置<br>所以p’ &#x3D; P + 2 * d * (-N)或者p’ &#x3D; P - 2 * d * N，如果平面不在原点处，还需计算平面到原点的距离dist<br>p’ &#x3D; P - 2 * (d - dist) * N，<br>对于向量同样适用此计算方式，只是无需dist<br>写成函数:<br>private _reflect (out: Vec3, point: Vec3, normal: Vec3, offset: number): Vec3<br>{<br>    &emsp;&emsp;const n &#x3D; Vec3.clone(normal);<br>    &emsp;&emsp;const dist &#x3D; Vec3.dot(n, point) - offset;<br>    &emsp;&emsp;n.multiplyScalar(2.0 * dist);<br>    &emsp;&emsp;Vec3.subtract(out, point, n);<br>    &emsp;&emsp;return out;<br>}<br><img src="/works-demo/works-images/planar-1.png"><br>上图有一个问题，就是地面虽然使用了法线贴图，但是平面反射的效果却没受法线贴图凹凸的影响，看起来就像镜面反射一样特别光滑。<br>采样平面反射贴图的uv坐标是顶点worldpos经过投影矩阵变换后除以w分量后的ndc坐标，在乘以0.5 + 0.5映射到0-1之间，要想让法线贴图影响uv坐标，需要在投影矩阵变换之前对worldpos进行偏移，过程如下：<br><img src="/works-demo/works-images/worldpos.png"><br>以平面上的点w来举例：渲染反射贴图时相机的方向是和反射方向一致的，对于光滑的平面w必然经过相机的方向。<br>但是应用反射贴图后，反射向量会指向不同的方向，相机指向新的反射方向时会和平面产生一个新的交点，只需计算出交点的坐标，然后把此坐标转到裁剪空间进行透视除法后映射到屏幕坐标，然后进行采样就应该能得到想要的效果。<br>w’就是新的worldpos，所以问题变成求w’的坐标，计算w’的位置关键在与计算T的距离</p>
+<p>W’ &#x3D; C’ + R’ * T<br>w’· N + d &#x3D; 0<br>(C’ + R’ * T) · N + d &#x3D; 0<br>C’· N + R’ * T · N &#x3D; abs(d)<br>T &#x3D; (abs(d) - C’ · N ) &#x2F; R’· N<br>W’ &#x3D; C’ + T * R’</p>
 <h4 id="偏移world-pos后的效果"><a href="#偏移world-pos后的效果" class="headerlink" title="偏移world pos后的效果"></a>偏移world pos后的效果</h4><p><img src="/works-demo/works-images/planar-2.png"></p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2023年10月28日 23:10</p>
+        <p>最后更新： 2023年10月29日 11:23</p>
         <p>原始链接： <a class="post-url" href="/works-demo/2023/10/28/planar-reflection/" title="Planar Reflection">https://xubing0906.github.io/works-demo/2023/10/28/planar-reflection/</a></p>
         <footer>
             <a href="https://xubing0906.github.io/works-demo">
